@@ -2,6 +2,16 @@ const express = require('express')
 const cors = require('cors')
 
 require('dotenv').config();
+const db = require('knex')({
+  client: 'pg',
+  connection: {
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
+    port: process.env.DB_PORT
+  }
+})
 
 const app = express();
 const port = 3001;
@@ -9,8 +19,15 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(cors());
 
+const getPlants = require('./controllers/get-plants.js');
+
+
 app.get('/', (req, res) => {
   res.status(200).json('Wow it works');
+})
+
+app.get('/plants/:user', (req, res) => {
+  getPlants.handlePlantRequest(req, res, db);
 })
 
 app.listen(port, () => {
