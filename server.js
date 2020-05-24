@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(cors());
 
 const getPlants = require('./controllers/get-plants.js');
-
+const addPlant = require('./controllers/add-plant.js');
 
 app.get('/', (req, res) => {
   res.status(200).json('Wow it works');
@@ -28,6 +28,10 @@ app.get('/', (req, res) => {
 
 app.get('/plants/:user', (req, res) => {
   getPlants.handlePlantRequest(req, res, db);
+})
+
+app.get('/plants/:user/add', (req, res) => {
+  addPlant.handlePlantAddRequest(req, res, db);
 })
 
 app.listen(port, () => {
