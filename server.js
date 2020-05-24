@@ -30,6 +30,10 @@ app.get('/plants/:user', (req, res) => {
   getPlants.handlePlantRequest(req, res, db);
 })
 
+app.get('/plants/:user/:plantid', (req, res) => {
+  getPlants.handleIndPlantRequest(req, res, db);
+})
+
 app.get('/plants/:user/add', (req, res) => {
   addPlant.handlePlantAddRequest(req, res, db);
 })

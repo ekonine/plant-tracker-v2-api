@@ -1,4 +1,4 @@
-handlePlantRequest = (req, res, db) => {
+const handlePlantRequest = (req, res, db) => {
   const {user} = req.params;
 
   db('plants')
@@ -10,7 +10,22 @@ handlePlantRequest = (req, res, db) => {
 
 }
 
+const handleIndPlantRequest = (req, res, db) => {
+  const {user, plantid} = req.params;
+
+  db('plants')
+    .select('*')
+    .where({
+      username: `${user}`,
+      plantid: `${plantid}`
+    })
+    .first()
+    .then(results => res.json(results))
+
+}
+
 module.exports = {
-  handlePlantRequest
+  handlePlantRequest,
+  handleIndPlantRequest
 }
 

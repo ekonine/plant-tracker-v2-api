@@ -51,6 +51,7 @@ const handlePlantAddRequest = (req, res, db) => {
     })
 };
 
+
 module.exports = {
   handlePlantAddRequest
 }
