@@ -22,6 +22,7 @@ app.use(cors());
 const getPlants = require('./controllers/get-plants.js');
 const addPlant = require('./controllers/add-plant.js');
 const deletePlant = require('./controllers/delete-plant.js');
+const updatePlant = require('./controllers/update-plant.js');
 
 app.get('/', (req, res) => {
   res.status(200).json('Wow it works');
@@ -41,6 +42,10 @@ app.post('/plants/:user/add', (req, res) => {
 
 app.delete('/plants/:user/:plantid/del', (req, res) => {
   deletePlant.handlePlantDelete(req, res, db);
+})
+
+app.put('/plants/:user/:plantid/update', (req, res) => {
+  updatePlant.handlePlantUpdate(req, res, db);
 })
 
 app.listen(port, () => {
