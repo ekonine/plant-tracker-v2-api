@@ -19,3 +19,7 @@ const handlePlantDelete = (req, res, db) => {
       console.error(error);
     })
 }
+
+module.exports = {
+  handlePlantDelete
+}
